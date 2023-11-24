@@ -37,7 +37,6 @@ def lexing(content: str):
             i += jump_to
 
         elif content[i].isdigit():
-            before_colon = False
             word, jump_to, ok = extract_integer(content[i:])
             
             if not ok:
@@ -47,8 +46,10 @@ def lexing(content: str):
             i += jump_to
 
         else:
-            if before_colon and content[i].isalpha:
+            if before_colon and content[i].isalpha: # key is not covered by quotes
                 return 'Invalid JSON expected "' ,False
+            else: # invalid value ex integer + str
+                return f'Unexpected char {content[i]}', False 
 
     return tokens, True
 
