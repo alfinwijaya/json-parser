@@ -1,19 +1,12 @@
 import sys
 from lexer import lexing
 
-def main():
+def open_file():
     file = open(sys.argv[1],'r')
-    content = file.read()
+    return file.read()
 
-    lex_res = []
-    lex_res, ok = lexing(content)
-    
-    if not ok:
-        print(lex_res)
-        sys.exit(1)
-
-    print(lex_res)
-    sys.exit(0)
+def main():
+    content = open_file()
 
 if __name__ == '__main__':
     main()

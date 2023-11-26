@@ -1,56 +1,56 @@
-from json_type import Punctuation, punctuation
-from string_handler import extract_string
-from integer_handler import extract_integer
+from json_type import JSONType
 
-def lexing(content: str):
-    tokens = []
-    before_colon = True
+class Lexer:
+    def lex_string(self, content = str, position = int):
+        start_pos = position
+        while (content[position] != '"'):
+            position += 1
 
-    if not content:
-        return 'Invalid empty JSON', False
-
-    i = 0
-    while i < len(content):
-
-        if content[i].isspace():
-            i +=1
-            continue
-
-        if content[i] in punctuation:
-            if len(tokens) > 0 and tokens[-1] == Punctuation.COMMA.value:
-                return 'Invalid JSON. Trailing comma detected', False
+            if (position == len(content) - 1):
+                raise ValueError("Unterminated string")
             
-            if content[i] is Punctuation.COLON.value:
-                before_colon = False
-            elif content[i] is Punctuation.COMMA.value:
-                before_colon = True
-
-            tokens.append(content[i])
-            i += 1
-
-        elif content[i] is Punctuation.DOUBLE_QUOTE.value:
-            word, jump_to, ok = extract_string(content[i:])
-            if not ok:
-                return word, ok 
+        return content[start_pos:position], position
+    
+    def lex_number(self, content = str, position = int):
+        start_pos = position
+        while (content[position].isdigit() or content[position] == '.'):
+            position += 1
             
-            tokens.append(word)
-            i += jump_to
+        return content[start_pos:position], position
 
-        elif content[i].isdigit():
-            word, jump_to, ok = extract_integer(content[i:])
-            
-            if not ok:
-                return word, ok
-            
-            tokens.append(int(word))
-            i += jump_to
+    def tokenize(self, content: str):
+        if not content:
+            return 'Invalid empty JSON', False
 
-        else:
-            if before_colon and content[i].isalpha: # key is not covered by quotes
-                return 'Invalid JSON expected "' ,False
-            else: # invalid value ex integer + str
-                return f'Unexpected char {content[i]}', False 
+        tokens = []
+        position = 0
 
-    return tokens, True
+        while position < len(content):
+            if content[position].isspace():
+                position += 1
+                continue
+            elif content[position] == '{':
+                tokens.append((content[position], JSONType.OPEN_BRACKET))
+            elif content[position] == '}':
+                tokens.append((content[position], JSONType.CLOSE_BRACKET))
+            elif content[position] == '[':
+                tokens.append((content[position], JSONType.OPEN_BRACE))
+            elif content[position] == ']':
+                tokens.append((content[position], JSONType.CLOSE_BRACE))
+            elif content[position] == ':':
+                tokens.append((content[position], JSONType.COLON))
+            elif content[position] == ',':
+                tokens.append((content[position], JSONType.COMMA))
+            elif content[position] == '"':
+                position += 1
+                string_token, position = self.lex_string(content, position)
+                tokens.append((string_token, JSONType.STRING))
+                continue
+            elif content[position].isdigit():
+                number_token, position = self.lex_number(content, position)
+                tokens.append((number_token, JSONType.NUMBER))
+            #elif content[position]
+            else:
+                raise ValueError(f'Unexpected character: {content[position]} at position {position}')
 
-        
+            position += 1
