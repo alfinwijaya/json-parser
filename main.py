@@ -1,5 +1,5 @@
 import sys
-from lexer import lexing
+from lexer import Lexer
 
 def open_file():
     file = open(sys.argv[1],'r')
@@ -7,6 +7,10 @@ def open_file():
 
 def main():
     content = open_file()
+
+    lexer = Lexer()
+    lexed_tokens = lexer.tokenize(content=content)
+    print(lexed_tokens)
 
 if __name__ == '__main__':
     main()

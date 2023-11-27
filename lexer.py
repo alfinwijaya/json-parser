@@ -9,14 +9,27 @@ class Lexer:
             if (position == len(content) - 1):
                 raise ValueError("Unterminated string")
             
-        return content[start_pos:position], position
+        return content[start_pos:position], position + 1
     
     def lex_number(self, content = str, position = int):
         start_pos = position
-        while (content[position].isdigit() or content[position] == '.'):
+        while (content[position] is not None and (content[position].isdigit() or content[position] == '.')):
             position += 1
             
         return content[start_pos:position], position
+    
+    def lex_boolean_and_null(self, content = str, position = int):
+        start_pos = position
+
+        while (content[position] is not None and content[position].isalpha()):
+            position == 1
+
+        word = content[start_pos:position]
+
+        if (word.lower() in ['true', 'false', 'null']):
+            return word, position
+        else:
+            raise ValueError(f"Unexpected keyword: {word}")
 
     def tokenize(self, content: str):
         if not content:
@@ -24,33 +37,54 @@ class Lexer:
 
         tokens = []
         position = 0
-
+        
         while position < len(content):
             if content[position].isspace():
                 position += 1
                 continue
+
             elif content[position] == '{':
                 tokens.append((content[position], JSONType.OPEN_BRACKET))
+
             elif content[position] == '}':
                 tokens.append((content[position], JSONType.CLOSE_BRACKET))
+
             elif content[position] == '[':
                 tokens.append((content[position], JSONType.OPEN_BRACE))
+
             elif content[position] == ']':
                 tokens.append((content[position], JSONType.CLOSE_BRACE))
+
             elif content[position] == ':':
                 tokens.append((content[position], JSONType.COLON))
+
             elif content[position] == ',':
                 tokens.append((content[position], JSONType.COMMA))
+
             elif content[position] == '"':
                 position += 1
+
                 string_token, position = self.lex_string(content, position)
                 tokens.append((string_token, JSONType.STRING))
                 continue
-            elif content[position].isdigit():
+
+            elif content[position].isdigit() or content[position] == '-':
                 number_token, position = self.lex_number(content, position)
                 tokens.append((number_token, JSONType.NUMBER))
-            #elif content[position]
+                continue
+
+            elif content[position].isalpha():
+                word, position = self.lex_boolean_and_null(content, position)
+
+                if (word.lower() in ['true', 'false']):
+                    tokens.append((word, JSONType.BOOLEAN))
+                else:
+                    tokens.append((word, JSONType.NULL))
+                continue
+
             else:
                 raise ValueError(f'Unexpected character: {content[position]} at position {position}')
 
             position += 1
+            
+        return tokens
