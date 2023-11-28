@@ -1,15 +1,11 @@
-from enum import Enum
-
-class JSONType(Enum):
-    STRING= 'STRING'
-    NUMBER= 'NUMBER'
-    BOOLEAN= 'BOOLEAN'
-    NULL= 'NULL'
-    OBJECT= 'OBJECT'
-    ARRAY= 'ARRAY'
-    OPEN_BRACE= 'OPEN_BRACE'
-    CLOSE_BRACE= 'CLOSE_BRACE'
-    OPEN_BRACKET= 'OPEN_BRACKET'
-    CLOSE_BRACKET= 'CLOSE_BRACKET'
-    COLON= 'COLON'
-    COMMA= 'COMMA'
+class JSONType():
+    STRING= 'string'
+    NUMBER= 'number'
+    BOOLEAN= 'boolean'
+    NULL= 'null'
+    OPEN_BRACE= 'open_brace'
+    CLOSE_BRACE= 'close_brace'
+    OPEN_BRACKET= 'open_bracket'
+    CLOSE_BRACKET= 'close_bracket'
+    COLON= 'colon'
+    COMMA= 'comma'
