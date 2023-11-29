@@ -1,25 +1,54 @@
-from json_type import JSONType
+from utils.json_type import JSONType
 
 class Lexer:
     def lex_string(self, content = str, position = int):
-        start_pos = position
+        is_escape = False
+        result = ""
 
-        while (content[position] != '"'):
-            position += 1
+        # List of escape characters 
+        # https://learn.microsoft.com/en-us/cpp/c-language/escape-sequences?view=msvc-170
+        while position < len(content):
+            current_char = content[position]
 
-            # Initially, I thought an unterminated string error should be raised by a parser.
-            # However, after reading some references, It more make sense to place it in the lexer.
-            # This is because the lexer can't tokenize the string without knowing the end of a string,
-            # Which is marked by a double quote
-            if (position == len(content) - 1 and content[position] != '"'):
-                raise Exception("Unterminated string")
-            
-        return content[start_pos:position], position + 1
-    
+            if not is_escape and current_char == '\\':
+                is_escape = True
+            elif is_escape:
+                match current_char:
+                    case c if c in ['a','b','f','n','r','t','v','"','\\','?']:
+                        result += f'\{current_char}'
+                    case '/':
+                        result += '/'
+                    case 'u':
+                        # https://www.geeksforgeeks.org/python-encode-unicode-and-non-ascii-characters-into-json/
+                        unicode_sequence = content[position-1:position+5]
+                        try:
+                            # https://stackoverflow.com/questions/48006240/how-to-convert-unicode-string-into-normal-text-in-python
+                            unicode_char = unicode_sequence.encode('utf-8').decode('unicode-escape') 
+                            result += unicode_char
+                            position += 4
+                        except:
+                            raise Exception(f"Invalid Unicode escape sequence: \\u{unicode_sequence}")
+                    case _:
+                        raise Exception(f"Invalid escape sequence: \\{current_char}")
+
+                is_escape = False
+            elif current_char == '"':
+                position += 1 # end of string
+                break
+            else:
+                result += current_char
+                
+            position += 1 # move next
+
+        if position == len(content) and content[position - 1] != '"':
+            raise Exception("Unterminated string")
+
+        return result, position
+
     def lex_number(self, content = str, position = int):
         start_pos = position
-
-        while (content[position] is not None and (content[position].isdigit() or content[position] == '.')):
+        while (content[position] is not None and (content[position].isdigit() 
+                                                  or content[position] in {'-', '.', 'e', 'E', '+'})):
             position += 1
             
         return content[start_pos:position], position
@@ -90,10 +119,10 @@ class Lexer:
                     continue
 
                 else:
-                    raise ValueError(f'Unexpected character: {content[position]} at position {position}')
+                    raise Exception(f'Unexpected character: {content[position]} at position {position}')
 
                 position += 1
                 
             return tokens
-        except Exception as e:
-            print(e)
+        except Exception:
+            raise

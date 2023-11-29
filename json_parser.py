@@ -1,12 +1,12 @@
 import sys
-from lexer import Lexer
-from syntacter import Parser
+from utils.lexer import Lexer
+from utils.syntacter import Parser
 
 def open_file():
     file = open(sys.argv[1],'r')
     return file.read()
 
-def main():
+def json_parser():
     try:
         content = open_file()
 
@@ -17,9 +17,11 @@ def main():
             parser = Parser(tokens=lexed_tokens, index=0)
             dict = parser.parse()
             print(dict)
+            sys.exit(0)
 
     except Exception as e:
         print(e)
+        sys.exit(1)
 
 if __name__ == '__main__':
-    main()
+    json_parser()
