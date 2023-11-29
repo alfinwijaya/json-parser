@@ -27,7 +27,7 @@ class Lexer:
                             result += unicode_char
                             position += 4
                         except:
-                            raise Exception(f"Invalid Unicode escape sequence: \\u{unicode_sequence}")
+                            raise Exception(f"Invalid Unicode escape sequence: {unicode_sequence}")
                     case _:
                         raise Exception(f"Invalid escape sequence: \\{current_char}")
 

@@ -16,9 +16,10 @@ def json_parser():
         if lexed_tokens:
             parser = Parser(tokens=lexed_tokens, index=0)
             dict = parser.parse()
-            print(dict)
-            sys.exit(0)
+            # print(dict)
+            return dict
 
+        sys.exit(0)
     except Exception as e:
         print(e)
         sys.exit(1)
