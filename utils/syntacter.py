@@ -4,6 +4,7 @@ class Parser:
     def __init__(self, tokens = [], index = int):
         self.tokens = tokens
         self.index = index
+        self.trailing_comma = False
 
     def go_next(self, from_closing=False): 
         self.index += 1
@@ -15,7 +16,12 @@ class Parser:
         if self.tokens[self.index][1] != JSONType.COLON:
             raise Exception(f'Unexpected token {self.tokens[self.index][1]}, expected: :')
         
-        self.index += 1
+        self.go_next()
+
+    def read_comma(self):
+        if self.tokens[self.index][1] == JSONType.COMMA:
+            self.trailing_comma = True
+            self.go_next()
 
     def parse_key(self):
         if self.tokens[self.index][1] == JSONType.STRING:
@@ -67,31 +73,28 @@ class Parser:
 
     def parse_array(self):
         ls = []
-        trailing_comma = False
+        self.trailing_comma = False
         
         self.go_next()
         while self.tokens[self.index][1] != JSONType.CLOSE_BRACKET:
             value = self.parse_value()
             ls.append(value)
 
-            trailing_comma = False
-
-            if self.tokens[self.index][1] == JSONType.COMMA:
-                trailing_comma = True
-                self.go_next()
-
-        if trailing_comma:
+            self.trailing_comma = False
+            self.read_comma()
+            
+        if self.trailing_comma:
             raise Exception('Unexpected token type ,')
 
         self.go_next(from_closing=True)
-        
+
         return ls
         
     def parse_object(self):
         dict = {}
-        trailing_comma = False
+        self.trailing_comma = False
 
-        self.go_next() # skip open brace
+        self.go_next()
         while self.tokens[self.index][1] != JSONType.CLOSE_BRACE:
             key = self.parse_key()
             self.go_next()
@@ -99,22 +102,19 @@ class Parser:
             value = self.parse_value()
             dict[key] = value
             
-            trailing_comma = False
+            self.trailing_comma = False
+            self.read_comma()
 
-            if self.tokens[self.index][1] == JSONType.COMMA:
-                trailing_comma = True
-                self.go_next()
-
-        if trailing_comma:
+        if self.trailing_comma:
             raise Exception('Unexpected token type ,')
         
-        self.go_next(from_closing=True) # skip close brace
+        self.go_next(from_closing=True)
         
         return dict
 
     def parse(self):
         try:
-            if not self.tokens[0][1] in [JSONType.OPEN_BRACE, JSONType.OPEN_BRACKET] : # Tokens must start with '{' or '['
+            if not self.tokens[0][1] in [JSONType.OPEN_BRACE, JSONType.OPEN_BRACKET] :
                 raise Exception(f'Unexpected token {self.tokens[0][0]}, expected {JSONType.OPEN_BRACE} or {JSONType.OPEN_BRACKET} at position 0')
             else:
                 result = self.parse_value()

@@ -18,8 +18,9 @@ def json_parser():
             dict = parser.parse()
             # print(dict)
             return dict
-
+        
         sys.exit(0)
+
     except Exception as e:
         print(e)
         sys.exit(1)

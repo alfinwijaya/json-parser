@@ -19,10 +19,8 @@ class Lexer:
                     case '/':
                         result += '/'
                     case 'u':
-                        # https://www.geeksforgeeks.org/python-encode-unicode-and-non-ascii-characters-into-json/
                         unicode_sequence = content[position-1:position+5]
                         try:
-                            # https://stackoverflow.com/questions/48006240/how-to-convert-unicode-string-into-normal-text-in-python
                             unicode_char = unicode_sequence.encode('utf-8').decode('unicode-escape') 
                             result += unicode_char
                             position += 4
