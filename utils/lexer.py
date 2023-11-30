@@ -5,8 +5,8 @@ class Lexer:
         is_escape = False
         result = ""
 
-        # List of escape characters 
-        # https://learn.microsoft.com/en-us/cpp/c-language/escape-sequences?view=msvc-170
+        # List of JSON's escape characters 
+        # https://www.freeformatter.com/json-escape.html
         while position < len(content):
             current_char = content[position]
 
@@ -14,7 +14,7 @@ class Lexer:
                 is_escape = True
             elif is_escape:
                 match current_char:
-                    case c if c in ['a','b','f','n','r','t','v','"','\\','?']:
+                    case c if c in ['b','f','n','r','t','"','\\']:
                         result += f'\{current_char}'
                     case '/':
                         result += '/'
