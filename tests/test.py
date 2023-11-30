@@ -57,177 +57,177 @@ class JSONParser_Test(unittest.TestCase):
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(0, result.returncode)
 
-    def tests_step_5_fail_1(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail1.json"]
+    def tests_step_5_invalid_1(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid1.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
 
-    def tests_step_5_fail_2(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail2.json"]
+    def tests_step_5_invalid_2(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid2.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
 
-    def tests_step_5_fail_3(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail3.json"]
+    def tests_step_5_invalid_3(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid3.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
 
-    def tests_step_5_fail_4(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail4.json"]
+    def tests_step_5_invalid_4(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid4.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
 
-    def tests_step_5_fail_5(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail5.json"]
+    def tests_step_5_invalid_5(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid5.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
 
-    def tests_step_5_fail_6(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail6.json"]
+    def tests_step_5_invalid_6(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid6.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
 
-    def tests_step_5_fail_7(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail7.json"]
+    def tests_step_5_invalid_7(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid7.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_8(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail8.json"]
+    def tests_step_5_invalid_8(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid8.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_9(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail9.json"]
+    def tests_step_5_invalid_9(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid9.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_10(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail10.json"]
+    def tests_step_5_invalid_10(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid10.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_11(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail11.json"]
+    def tests_step_5_invalid_11(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid11.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_12(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail12.json"]
+    def tests_step_5_invalid_12(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid12.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_13(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail13.json"]
+    def tests_step_5_invalid_13(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid13.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_14(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail14.json"]
+    def tests_step_5_invalid_14(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid14.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_15(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail15.json"]
+    def tests_step_5_invalid_15(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid15.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_16(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail16.json"]
+    def tests_step_5_invalid_16(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid16.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_17(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail17.json"]
+    def tests_step_5_invalid_17(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid17.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_19(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail19.json"]
+    def tests_step_5_invalid_19(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid19.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_20(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail20.json"]
+    def tests_step_5_invalid_20(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid20.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_21(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail21.json"]
+    def tests_step_5_invalid_21(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid21.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_22(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail22.json"]
+    def tests_step_5_invalid_22(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid22.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_23(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail23.json"]
+    def tests_step_5_invalid_23(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid23.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_24(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail24.json"]
+    def tests_step_5_invalid_24(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid24.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_25(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail25.json"]
+    def tests_step_5_invalid_25(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid25.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_26(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail26.json"]
+    def tests_step_5_invalid_26(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid26.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_27(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail27.json"]
+    def tests_step_5_invalid_27(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid27.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_28(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail28.json"]
+    def tests_step_5_invalid_28(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid28.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_29(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail29.json"]
+    def tests_step_5_invalid_29(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid29.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_30(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail30.json"]
+    def tests_step_5_invalid_30(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid30.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_31(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail31.json"]
+    def tests_step_5_invalid_31(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid31.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_32(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail32.json"]
+    def tests_step_5_invalid_32(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid32.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
     
-    def tests_step_5_fail_33(self):
-        testargs = ["python", "json_parser.py", "tests/step5/fail33.json"]
+    def tests_step_5_invalid_33(self):
+        testargs = ["python", "json_parser.py", "tests/step5/invalid33.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(1, result.returncode)
 
-    def tests_step_5_pass_1(self):
-        testargs = ["python", "json_parser.py", "tests/step5/pass1.json"]
+    def tests_step_5_valid_1(self):
+        testargs = ["python", "json_parser.py", "tests/step5/valid1.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(0, result.returncode)
 
-    def tests_step_5_pass_2(self):
-        testargs = ["python", "json_parser.py", "tests/step5/pass2.json"]
+    def tests_step_5_valid_2(self):
+        testargs = ["python", "json_parser.py", "tests/step5/valid2.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(0, result.returncode)
 
-    def tests_step_5_pass_3(self):
-        testargs = ["python", "json_parser.py", "tests/step5/pass3.json"]
+    def tests_step_5_valid_3(self):
+        testargs = ["python", "json_parser.py", "tests/step5/valid3.json"]
         result = subprocess.run(testargs, capture_output=True, text=True)
         self.assertEqual(0, result.returncode)

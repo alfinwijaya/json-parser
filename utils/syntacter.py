@@ -29,27 +29,32 @@ class Parser:
         else:
             raise Exception('Invalid (non-string) key in JSON')
         
+    def parse_value_string(self):
+        if '\t' in self.tokens[self.index][0]:
+                raise Exception(f'Tab character not allowed inside string')
+        elif '\r' in self.tokens[self.index][0] or '\n' in self.tokens[self.index][0]:
+            raise Exception(f'Line break character not allowed inside string')
+        
+        return self.tokens[self.index][0]
+
+    def parse_value_number(self):
+        chars = set('.eE+')
+        if any((c in chars) for c in self.tokens[self.index][0]):
+            return float(self.tokens[self.index][0])
+        else:
+            if self.tokens[self.index][0].startswith('0') and len(self.tokens[self.index][0]) > 1:
+                raise Exception('Integer cannot have leading zeroes')
+            else:
+                return int(self.tokens[self.index][0])
+
     def parse_value(self):
         if self.tokens[self.index][1] == JSONType.STRING:
-            if '\t' in self.tokens[self.index][0]:
-                raise Exception(f'Tab character not allowed inside string')
-            elif '\r' in self.tokens[self.index][0] or '\n' in self.tokens[self.index][0]:
-                raise Exception(f'Line break character not allowed inside string')
-            
-            res = self.tokens[self.index][0]
+            res = self.parse_value_string()
             self.go_next()
             return res
         
         elif self.tokens[self.index][1] == JSONType.NUMBER:
-            res = 0
-            chars = set('.eE+')
-            if any((c in chars) for c in self.tokens[self.index][0]):
-                res = float(self.tokens[self.index][0])
-            else:
-                if self.tokens[self.index][0].startswith('0') and len(self.tokens[self.index][0]) > 1:
-                    raise Exception('Integer cannot have leading zeroes')
-                else:
-                    res = int(self.tokens[self.index][0])
+            res = self.parse_value_number()
             self.go_next()
             return res
 
