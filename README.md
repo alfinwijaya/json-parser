@@ -1,22 +1,22 @@
 # JSON Parser
 
-A parser to turn your .json file into Python dictionary. This repository is part of the [Coding Challanges](https://codingchallenges.fyi/) and specifically addresses the JSON Parser challenge
+<b>This parser converts a .json file into a Python dictionary</b>. The parser takes both valid and invalid .json files as input and analyzes them through lexical and syntactic analysis. The result is either a Python dictionary or an exception caused by an invalid .json file. This repository is part of the [Coding Challenges](https://codingchallenges.fyi/) and specifically addresses the JSON Parser challenge.
 
 ## Requirements
 
-- Python 3.11
-- Code Editor
+* Python 3.11
+* Code Editor
 
-## How to Use
+## Usage
 
-To run the script
+To run the script:
 
-```
+```bash
 python json_parser.py <FILE>
 ```
 
-input :
-```
+example input :
+```bash
 {
   "key": "value",
   "key-n": 101,
@@ -27,8 +27,8 @@ input :
 }
 ```
 
-output as Python dictionary:
-```
+example output as Python dictionary:
+```bash
 {
   'key': 'value',
   'key-n': 101,
@@ -41,8 +41,17 @@ output as Python dictionary:
 
 
 ### Test
+Used test cases provided by [Coding Challanges](https://codingchallenges.fyi/) and [JSON Checker](http://www.json.org/JSON_checker/).
+
+Note: I excluded the `fail18.json` test case due to insufficient information about the maximum depth of a nested JSON.
 
 To run all of the unit tests
-```
+```bash
 python -m unittest tests/test.py
 ```
+
+Test Results:
+
+* If the JSON successfully turns into a dictionary, the script returns 1.
+
+* If an exception is raised (invalid JSON), the script returns 0.
