@@ -16,7 +16,7 @@ def json_parser():
         if lexed_tokens:
             parser = Parser(tokens=lexed_tokens, index=0)
             dict = parser.parse()
-            # print(dict)
+            # print(dict) # comment out this line if you are running the test, as it may cause encoding errors.(if you know something about it let me know)
             return dict
         
         sys.exit(0)
